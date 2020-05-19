@@ -1,14 +1,26 @@
 const Hangman = function (word, guess) {
-    this.word = word
-    this.guess = guess
+    this.word = word.toLowerCase().split('');
+    this.guess = guess;
+    this.guessedLetters = ['c', 'e'];
 }
 
-Hangman.prototype.game = function () {
+Hangman.prototype.getPuzzle = function () {
+    let puzzle = '';
 
+    this.word.forEach((letter) => {
+        if (this.guessedLetters.includes(letter) || letter === ' ') {
+            puzzle += letter
+        } else {
+            puzzle += '*'
+        }
+    })
+
+
+    return puzzle;
 }
 
-const trying = new Hangman('hello', 4);
-console.log(trying);
+const game1 = new Hangman('cat', 2);
+console.log(game1.getPuzzle());
 
-const tryingTwo = new Hangman('FreeCodeCamp', 6);
-console.log(tryingTwo);
+const match1 = new Hangman('FreeCodeCamp', 6);
+console.log(match1.getPuzzle());
